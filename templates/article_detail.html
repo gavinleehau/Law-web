@@ -1,0 +1,43 @@
+{% extends "homebase.html" %}
+{% load static %}   
+{% block active_articles %}active{% endblock %}    
+{% block content %} 
+            
+            
+    <!-- Page Header Start -->
+    <div class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Bài viết</h2>
+                </div>
+                <!-- <div class="col-12">
+                    <a href="">Home</a>
+                    <a href="">Single Page</a>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <!-- Single Page Start -->
+    <div class="single">
+        <div class="container">
+            <div class="section-header">
+                <div class="col-12">
+                    <h2>{{articles_detail.title}}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    {{articles_detail.content|safe}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Single Page End -->
+
+
+
+{% endblock %}

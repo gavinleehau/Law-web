@@ -1,0 +1,67 @@
+{% extends "homebase.html" %}
+{% load static %}   
+{% block active_contact %}active{% endblock %}    
+{% block content %} 
+
+<!-- Contact Start -->
+<div class="contact">
+    <div class="container">
+        <div class="section-header">
+            <h2>Contact Us</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fa fa-map-marker-alt"></i>
+                        <div class="contact-text">
+                            <h2>Location</h2>
+                            <p>{{location}}</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa fa-phone-alt"></i>
+                        <div class="contact-text">
+                            <h2>Phone</h2>
+                            <p>{{phone}}<p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa fa-envelope"></i>
+                        <div class="contact-text">
+                            <h2>Email</h2>
+                            <p>{{email}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="contact-form">
+                    <form action="" method="POST">
+                      {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control" placeholder="Your Name" required="required"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" class="form-control" placeholder="Your Email" required="required"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="phone" class="form-control" placeholder="Your numberPhone" required="required"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="subject" class="form-control" placeholder="Subject" required="required"/>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="message" placeholder="Message" required="required" ></textarea>
+                        </div>
+                        <div>
+                            <button class="btn" type="submit">Gửi</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+{% endblock %}

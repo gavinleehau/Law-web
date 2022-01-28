@@ -1,0 +1,120 @@
+{% extends "homebase.html" %}
+{% load static %}
+{% block active_articles %}active{% endblock %}    
+{% block content %} 
+<!-- Page Header Start -->
+
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Bài viết</h2>
+            </div>
+            <!-- <div class="col-12">
+                <a href="">Home</a>
+                <a href="">Our Blog</a>
+            </div> -->
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+<!-- Blog Start -->
+<div class="blog">
+    <div class="container">
+        <div class="section-header">
+            <h2>Bài viết mới nhất</h2>
+        </div>
+        <div class="row blog-page">
+            {% for article in page.object_list %}
+                <div class="col-lg-4 col-md-6 blog-item">
+                    <img src={{article.image.url}} alt="Blog" width="350" height="220">
+                    <h3>{{article.title}}</h3>
+                    <div class="meta">
+                        <i class="fa fa-list-alt"></i>
+                        <a href="">{{article.author}}</a>
+                        <i class="fa fa-calendar-alt"></i>
+                        <p>{{article.date}}</p>
+                    </div>
+                    <p>
+                        {{article.content|striptags|safe|truncatewords:20}}
+                    </p>
+                    <a class="btn" href="{% url 'articles_detail' article_id=article.id %}">Read More <i class="fa fa-angle-right"></i></a>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <ul class="pagination justify-content-center">
+                    <ul class="pagination">
+                        <!-- {% if page.has_previous %}
+                            <li class="page-item"><a class="page-link" href="{% url 'articles' %}?page={{page.previous_page_number}}">Previous</a></li>
+                        {% else %}
+                            <li class="page-item disabled"><a class="page-link">Previous</a></li>
+                        {% endif %}
+                        
+                        {% if page.number|add:'-4' > 1 %}
+                            <li><a class="page-link" href="?page={{ page.number|add:'-5' }}">&hellip;</a></li>
+                        {% endif %}
+                        
+                        {% for i in new_paginator.page_range %}
+                            <li class="page-item {% if i == page.number %} active {% endif %}">
+                                <a class="page-link" href="?page={{ i }}">{{i}}</a>
+                            </li>
+                        {% endfor %}
+                        
+                        {% if page.paginator.num_pages > page.number|add:'4' %}
+                            <li><a class="page-link" href="?page={{ page.number|add:'5' }}">&hellip;</a></li>
+                        {% endif %}
+                        
+                        {% if page.has_next %}
+                            <li class="page-item"><a class="page-link" href="{% url 'articles' %}?page={{page.next_page_number}}">Next</a></li>
+                        {% else %}
+                            <li class="page-item disabled"><a class="page-link">Next</a></li>
+                        {% endif %} -->
+
+
+
+
+
+
+                        {% if page.has_previous %}
+                            <li><a href="{% url 'articles' %}?page={{page.previous_page_number}}">&lt;</a></li>
+                        {% else %}
+                            <li><a class="disabled" style="display: none;">&lt;</a></li>
+                        {% endif %}
+                        
+                        <!-- {% if page.number|add:'-4' > 1 %}
+                            <li><a href="?page=1">1</a></li>
+                            <li><a href="?page={{ page.number|add:'-5' }}">&hellip;</a></li>
+                        {% endif %} -->
+                        {% if page.number >= 5 %}
+                            <li><a href="?page=1">1</a></li>
+                            <li><a>&hellip;</a></li>
+                        {% elif page.number == 4 %}
+                            <li><a href="?page=1">1</a></li>
+                        {% endif %}
+
+                        {% for i in page.paginator.page_range %}
+                            {% if page.number == i %}
+                                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                            {% elif i > page.number|add:'-5' and i < page.number|add:'5' %}
+                                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if page.paginator.num_pages > page.number|add:'4' %}
+                            <li><a>&hellip;</a></li>
+                            <li><a href="{% url 'articles' %}?page={{page.next_page_number}}">&gt;</a></li>
+                        {% endif %}
+                    </ul>
+                </ul> 
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Blog End -->
+{% endblock %}
